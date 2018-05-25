@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="css/style.css"  type="text/css" rel="stylesheet">
+    <title>Générateur</title>
+</head>
+<body>
+
+<div id="wrapper">
+
+<div id="gauche">
+</div>
+
+
+<div id="droite">
+    Utilisez ces boutons pour créer votre formulaire<br><br>
+    <button>Label</button>
+    <button>Zone de texte</button>
+    <button>Bouton</button>
+
+    <script src="jquery-3.3.1.js"></script>
+    <script>
+
+
+      $(document).ready(function () {
+
+          var coteG = $("#gauche");
+          var coteD = $("#droite");
+
+          //Ajoute un FORM à gauche:
+          var formGauche = $("<form></form>").appendTo(coteG);
+          formGauche.css("margin-top", "50px");
+
+          //AJOUTE UNE SEPRATION A DROITE
+          coteD.append("<hr>");
+
+          //REACTION AU CLIC SUR LE BOUTON LABEL
+          $("#droite button:eq(0)").on("click", function () {
+
+
+              coteD.append("<div id='labelElmt'> <p>Texte du label: <input class='test' type='text' id='inputLabel' > <button id='boutonOK'> OK </button> </p> </div>");
+
+              //REACTION AU CLIC SUR BOUTON VALIDER
+              $("#boutonOK").on("click", function () {
+                  //sauvegarde la valeur de l'input:
+                  var titreLabel = $("#inputLabel").val();
+                  //l'ajoute à la balise <form> de gauche:
+                  formGauche.append("<span>" + titreLabel + "</span>");
+                  //efface le formulaire:
+                  $("#labelElmt").remove();
+              });
+          });
+            //REACTION AU CLIC SUR LE BOUTON ZONE DE TEXTE
+          $("#droite button:eq(1)").on("click", function () {
+
+
+              coteD.append("<div id='idElt'> <p>id de la zone de texte: <input type='text' id='input2'> <button id='boutonOK2'> OK </button> </p> </div>");
+
+              $("#boutonOK2").click(function () {
+                  var textId = $("#input2").val();
+                  formGauche.append("<input type='text' id=" + textId + " >");
+                  //$("#newInput").css("margin-left", "50px"); <= ici tu mets toujours le même id. Un id doit être unique
+                  //efface le formulaire:
+                  $("#idElt").remove();
+              });
+
+          });
+            //REACTION AU CLIC SUR LE BOUTON "BOUTON"
+          $("#droite button:eq(2)").click(function () {
+
+              coteD.append("<div id='buttonElt'> <p>Texte du bouton: <input type='text' id='input3'> <button id='boutonOK3'> OK </button> </p> </div>");
+
+              $("#boutonOK3").click(function () {
+                  var textButton = $("#input3").val();
+                  formGauche.append("<button id='valider'>" + textButton + "</button>")
+                  //$("#valider").css("margin-top", "50px"); <= ici tu mets toujours le même id. Un id doit être unique
+                  $("#buttonElt").remove();
+              });
+
+          });
+
+                var test = coteG.css('visibility','hidden');
+
+              if(coteG==test){
+                  coteG.css('transition','all 2s').css('visibility','visible').css('opacity','1');
+              }else{
+
+              }
+         
+
+      });
+
+    </script>
+</div>
+</div>
+</body>
+</html>
