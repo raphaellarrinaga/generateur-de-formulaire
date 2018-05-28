@@ -10,6 +10,7 @@
 <div id="wrapper">
 
 <div id="gauche">
+    <p id="show"></p>
 </div>
 
 
@@ -39,18 +40,19 @@
           $("#droite button:eq(0)").on("click", function () {
 
 
-              coteD.append("<div id='labelElmt'> <p>Texte du label: <input class='test' type='text' id='inputLabel' > <button id='boutonOK'> OK </button> </p> </div>");
+              coteD.append("<div id='labelElmt'> <p>Texte du label: <br><input class='test' type='text' id='inputLabel' > <button id='boutonOK'> OK </button> </p> </div>");
 
               //REACTION AU CLIC SUR BOUTON VALIDER
               $("#boutonOK").on("click", function () {
                   //sauvegarde la valeur de l'input:
                   var titreLabel = $("#inputLabel").val();
                   //l'ajoute à la balise <form> de gauche:
-                  formGauche.append("<span>" + titreLabel + "</span>");
+                  formGauche.append("<span>" + titreLabel + "</span><br>");
                   //efface le formulaire:
                   $("#labelElmt").remove();
               });
           });
+
             //REACTION AU CLIC SUR LE BOUTON ZONE DE TEXTE
           $("#droite button:eq(1)").on("click", function () {
 
@@ -59,21 +61,22 @@
 
               $("#boutonOK2").click(function () {
                   var textId = $("#input2").val();
-                  formGauche.append("<input type='text' id=" + textId + " >");
+                  formGauche.append("<input type='text' id=" + textId + " ><br>");
                   //$("#newInput").css("margin-left", "50px"); <= ici tu mets toujours le même id. Un id doit être unique
                   //efface le formulaire:
                   $("#idElt").remove();
               });
 
           });
+
             //REACTION AU CLIC SUR LE BOUTON "BOUTON"
           $("#droite button:eq(2)").click(function () {
 
-              coteD.append("<div id='buttonElt'> <p>Texte du bouton: <input type='text' id='input3'> <button id='boutonOK3'> OK </button> </p> </div>");
+              coteD.append("<div id='buttonElt'> <p>Texte du bouton:<input type='text' id='input3'> <button id='boutonOK3'> OK </button> </p> </div>");
 
               $("#boutonOK3").click(function () {
                   var textButton = $("#input3").val();
-                  formGauche.append("<button id='valider'>" + textButton + "</button>")
+                  formGauche.append("<button id='valider'>" + textButton + "</button><br>");
                   //$("#valider").css("margin-top", "50px"); <= ici tu mets toujours le même id. Un id doit être unique
                   $("#buttonElt").remove();
               });
@@ -83,12 +86,15 @@
                 var test = coteG.css('visibility','hidden');
 
               if(coteG==test){
-                  coteG.css('transition','all 2s').css('visibility','visible').css('opacity','1');
-              }else{
+                  $("button:lt(3)").click(function () {
+                  coteG.css('transition','all 2s').css('opacity','1').css('visibility','visible');
+                  });
+              }else {
+                  $('#show').css('opacity','1').css('visibility','visible',function () {
+                      $('#show').replaceWith('<img src="image/neige.png">');
+                  });
 
               }
-         
-
       });
 
     </script>

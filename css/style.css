@@ -22,3 +22,10 @@ body {
     background-color: #7ab8a1;
 
 }
+
+form{
+    display: grid;
+    margin-top: 50px;
+    text-align: center;
+    background-color: whitesmoke;
+}
